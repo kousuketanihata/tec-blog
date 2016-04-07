@@ -1,3 +1,36 @@
+<style type="text/css">
+html, body, #editor {
+  margin: 0;
+  height: 100%;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+}
+textarea, #editor div {
+  display: inline-block;
+  width: 49%;
+  height: 100%;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+textarea {
+  border: none;
+  border-right: 1px solid #ccc;
+  resize: none;
+  outline: none;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  font-family: 'Monaco', courier, monospace;
+  padding: 20px;
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.12.5/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+
 <%= form_for(@article) do |f| %>
   <% if @article.errors.any? %>
     <div id="error_explanation">
@@ -16,8 +49,14 @@
     <%= f.text_area :title %>
   </div>
   <div class="field">
+
     <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <div id="editor"> 
+    <textarea v-model="input" debounce="300" name="article[content]"></textarea>
+    <div v-html="input | marked"></div>
+</div>
+    <% #= f.text_area :content %>
+    
   </div>
   <div class="field">
     <%= f.label :user_id %><br>
@@ -27,3 +66,22 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+(function() {
+marked.setOptions({
+    highlight: function(code, lang) {
+        return hljs.highlightAuto(code, [lang]).value;
+    }
+});
+new Vue({
+    el: '#editor',
+    data: {
+        input: '# hello'
+    },
+    filters: {
+        marked: marked
+    }
+})
+}).call(this);
+</script>

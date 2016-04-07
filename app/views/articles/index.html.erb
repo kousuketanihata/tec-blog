@@ -28,4 +28,10 @@
 
 <br>
 
+<% if logged_in? %>
+          <li><%= link_to "Users", '#' %></li>
+          <% else %>
+          <span>not login</span>
+<% end %>
+
 <%= link_to 'New Article', new_article_path %>
