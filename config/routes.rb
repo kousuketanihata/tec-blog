@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :articles
   resources :sessions, only: [:new, :create, :destroy]
+  get 'new' =>'articles#new'
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
