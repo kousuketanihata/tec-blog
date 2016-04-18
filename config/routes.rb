@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :sessions, only: [:new, :create, :destroy]
   get 'new' =>'articles#new'
+  put    'article_post'=>'articles#create'
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

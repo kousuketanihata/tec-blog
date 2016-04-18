@@ -200,10 +200,18 @@
     table { border-collapse: collapse; border-spacing: 0; }
     td, th { vertical-align: top; padding: 4px 10px; border: 1px solid #bbb; }
     tr:nth-child(even) td, tr:nth-child(even) th { background: #eee; }
+    #send_btn{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
-  <div id="in"><form><textarea id="code"># (GitHub-Flavored) Markdown Editor
+  <div id="in">
+  <%= form_tag('/article_post',:method => :put) do %>
+  <textarea id="code" name="content">
+  # (GitHub-Flavored) Markdown Editor
 
 Basic useful feature list:
 
@@ -241,7 +249,11 @@ the inspiration to this, and some handy implementation hints, came.
  * [CodeMirror](http://codemirror.net/) for the awesome syntax-highlighted editor
  * [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for syntax highlighting in output code blocks
  * [js-deflate](https://github.com/dankogai/js-deflate) for gzipping of data to make it fit in URLs
-</textarea></form></div>
+</textarea>
+<%= hidden_field :page, :user_id %>
+<input type="submit" value="送信" id="send_btn">
+<% end %>
+</div>
   <div id="out"></div>
   <div id="menu">
     <span>Save As</span>
@@ -470,44 +482,3 @@ the inspiration to this, and some handy implementation hints, came.
   <script src="//d1l6p2sc9645hc.cloudfront.net/tracker.js" data-gs="GSN-265185-D" async></script>
 </body>
 </html>
-
-
-
-
-
-<%= form_for(@article) do |f| %>
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-      <ul>
-      <% @article.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_area :title %>
-  </div>
-  <div class="field">
-
-    <%= f.label :content %><br>
-    <div id="editor"> 
-    <textarea v-model="input" debounce="300" name="article[content]"></textarea>
-    <div v-html="input | marked"></div>
-</div>
-    <% #= f.text_area :content %>
-    
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
