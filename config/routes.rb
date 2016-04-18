@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   resources :articles
   resources :sessions, only: [:new, :create, :destroy]
   get 'new' =>'articles#new'
+  
+  
   put    'article_post'=>'articles#create'
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
+  get ':id' =>'articles#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

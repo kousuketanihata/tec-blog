@@ -9,16 +9,21 @@ class ArticlesController < ApplicationController
     p "Session"
     p session['user_id']
     @articles = Article.all
+    p @articles
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @article = Article.find(params[:id])
   end
 
   # GET /articles/new
   def new
     @user_id = session['user_id']
+      if @user_id == ""
+         redirect_to controller: 'users', action: 'login' 
+      end
     @article = Article.new
   end
 

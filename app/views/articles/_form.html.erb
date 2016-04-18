@@ -201,15 +201,21 @@
     td, th { vertical-align: top; padding: 4px 10px; border: 1px solid #bbb; }
     tr:nth-child(even) td, tr:nth-child(even) th { background: #eee; }
     #send_btn{
+      font-size: 1.4em;
+      padding: 10px 30px;
       position: absolute;
       bottom: 0;
       width: 100%;
+    }
+    #send_btn:hover{
+      background-color:blue;
     }
   </style>
 </head>
 <body>
   <div id="in">
   <%= form_tag('/article_post',:method => :put) do %>
+  <input type="text" name="title" id="title">
   <textarea id="code" name="content">
   # (GitHub-Flavored) Markdown Editor
 
@@ -250,7 +256,7 @@ the inspiration to this, and some handy implementation hints, came.
  * [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for syntax highlighting in output code blocks
  * [js-deflate](https://github.com/dankogai/js-deflate) for gzipping of data to make it fit in URLs
 </textarea>
-<%= hidden_field :page, :user_id %>
+<input type="hidden" name="user_id" value=""/>
 <input type="submit" value="送信" id="send_btn">
 <% end %>
 </div>
