@@ -12,11 +12,6 @@
     <% end %>
 <br>
 
-<% if logged_in? %>
-          <li><%= link_to "Users", '#' %></li>
-          <% else %>
-          <span>not login</span>
-<% end %>
  <a href="/new">
  
  </a>
@@ -138,13 +133,21 @@
 			</div>
 		</main>
 		<footer>
-			<p>© Company 2012 &ndash; Layout based on <a href="http://www.yaml.de">YAML</a></p>
+			<p>© Company <span id="thisyear"></span> &ndash; Layout based on <a href="http://www.yaml.de">YAML</a></p>
+      <% if logged_in? %>
+          <li><%= link_to "Users", '#' %></li>
+      <% else %>
+          <span>not login</span>
+      <% end %>
 		</footer>
 	</div>
 </div>
 
 <!-- full skip link functionality in webkit browsers -->
 <script src="../yaml/core/js/yaml-focusfix.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+</script>
 </body>
 </html>
 
