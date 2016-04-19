@@ -17,9 +17,10 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @user_id = session['user_id']
-      if @user_id == ""
-         redirect_to controller: 'users', action: 'login' 
+    user_id = session['user_id']
+    p user_id
+      if user_id.blank?
+         redirect_to controller: 'sessions', action: 'new' 
       end
     @article = Article.new
   end
