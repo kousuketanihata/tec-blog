@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'sessions/new'
+  get 'find' => 'articles#find'
 
   resources :users
   resources :articles

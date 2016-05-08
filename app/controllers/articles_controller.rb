@@ -15,6 +15,12 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def find
+    p params[:search]
+    @articles = Article.find_word(params[:search])
+
+  end
+
   # GET /articles/new
   def new
     user_id = session['user_id']

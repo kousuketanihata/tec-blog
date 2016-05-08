@@ -19,13 +19,13 @@
   /* Layout Module Configuration & fallback for unsupported media queries */
   .ym-wrapper {
     min-width: 760px;
-    max-width: 80em;
+    /*max-width: 80em;*/
     margin: 0 auto;
   }
 
-  .ym-wbox {
+  /*.ym-wbox {
     padding: 10px;
-  }
+  }*/
 
   /* Basic Element Styling */
   header {
