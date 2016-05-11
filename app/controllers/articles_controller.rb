@@ -23,23 +23,19 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    user_id = session['user_id']
-    p user_id
-      if user_id.blank?
+    @user_id = session['user_id']
+      if @user_id.blank?
          redirect_to controller: 'sessions', action: 'new' 
       end
     @article = Article.new
-  end
-
-  # GET /articles/1/edit
-  def edit
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-
+    markdown = Redcarpet::Markdown.new(renderer, extensions = {})
+    @title = 
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }

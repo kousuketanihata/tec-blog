@@ -1,0 +1,10 @@
+<footer>
+<p>© kousuke tanihata</p>
+      <% if logged_in? %>
+          <li><%= link_to "Users", '#' %></li>
+          <a href="/new">
+      <% else %>
+          <span>not login</span>
+          <%= link_to 'New Article', new_article_path %>
+      <% end %>
+</footer>

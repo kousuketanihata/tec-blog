@@ -5,22 +5,7 @@
 
 <div class="ym-wrapper">
 	<div class="ym-wbox">
-		<header>
-			<h1>java帝国とrails軍団の技術ブログ</h1>
-		</header>
-		<nav id="nav">
-			<div class="ym-hlist" >
-				<ul>
-					<li class="active"><strong>Home</strong></li>
-					<li><a href="#">about us</a></li>
-					<li><a href="#">writers</a></li>
-				</ul>
-				<form class="ym-searchform" method="get" action="find">
-					<input class="ym-searchfield" type="search" placeholder="Search..." name="search" />
-					<input class="ym-searchbutton" type="submit" value="Search" />
-				</form>
-			</div>
-		</nav>
+		<%= render 'layouts/header' %>
 		<main>
 			<div class="ym-column linearize-level-1">
 				<div class="ym-col1">
@@ -48,6 +33,7 @@
 										<p><%= article.content %></p>
 										</a>
 									</div>
+									<a class="ym-button ym-next" href="#">Read More</a>
 								</article>
 
 							<% end %>
@@ -89,28 +75,11 @@
 							<img src="http://dummyimage.com/128x128/cccccc/fff.png" alt="ads" class="float-left bordered"/>
 							<img src="http://dummyimage.com/128x128/cccccc/fff.png" alt="ads" class="float-left bordered"/>
 						</div>
-						<h4>Widget</h4>
-						<ul>
-							<li>Item 1</li>
-							<li>Item 2</li>
-							<li>Item 3</li>
-							<li>Item 4</li>
-							<li>Item 5</li>
-						</ul>
 					</div>
 				</aside>
 			</div>
 		</main>
-		<footer>
-			<p>© Company <span id="thisyear"></span> &ndash; Layout based on <a href="http://www.yaml.de">YAML</a></p>
-      <% if logged_in? %>
-          <li><%= link_to "Users", '#' %></li>
-          <a href="/new">
-      <% else %>
-          <span>not login</span>
-          <%= link_to 'New Article', new_article_path %>
-      <% end %>
-		</footer>
+		<%= render 'layouts/footer' %>
 	</div>
 </div>
 
